@@ -1,0 +1,1 @@
+savedcmd_/home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/Module.symvers :=  scripts/mod/modpost -M -m      -W -o /home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/Module.symvers -T /home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/modules.order -i Module.symvers -e 

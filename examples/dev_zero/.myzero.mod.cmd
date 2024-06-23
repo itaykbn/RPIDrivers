@@ -1,0 +1,1 @@
+savedcmd_/home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/myzero.mod := printf '%s\n'   main.o | awk '!x[$$0]++ { print("/home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/"$$0) }' > /home/kali/Desktop/drivers/RPIDrivers/examples/dev_zero/myzero.mod
