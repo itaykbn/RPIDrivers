@@ -1,0 +1,1 @@
+savedcmd_/home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/hello.mod := printf '%s\n'   main.o | awk '!x[$$0]++ { print("/home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/"$$0) }' > /home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/hello.mod

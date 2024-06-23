@@ -1,0 +1,1 @@
+savedcmd_/home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/modules.order := {   echo /home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/hello.o; :; } > /home/kali/Desktop/drivers/RPIDrivers/examples/hello_world/modules.order

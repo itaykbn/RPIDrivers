@@ -1,27 +1,19 @@
-# Set the output directory for object files
-obj_output_dir := ${PWD}/bin
-
-# List of source files
-src_files := $(wildcard src/*.c)
-
-# Generate object file names
-obj_files := $(patsubst src/%.c,$(obj_output_dir)/%.o,$(src_files))
-
-# Specify the target object file
-obj-m := $(obj_output_dir)/*
-
-all: $(obj_files)
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
-
+# this is a minimal makefile for demo purposes, keep it that way...
+obj-m:=hello.o
+hello-objs:=main.o
+V?=0
+KDIR?=/lib/modules/$(shell uname -r)/build
+# in an embedded system:
+#KDIR:=[where the system maker gave me kernel headers+makefile or the kernel itself which has a makefile]
+ARCH:=x86_64
+CROSS_COMPILE:=x86_64-linux-gnu-
+# You could also use W=2 and W=3 for more warnings but most kernel headers
+# fail those...
+W?=1
+.PHONY: modules
+modules:
+	$(MAKE) -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(CURDIR) V=$(V) W=$(W) modules
+.PHONY: clean
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
-
-# Rule to compile each .c file into .o file in bin directory
-$(obj_output_dir)/%.o: src/%.c
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-# Ensure that 'bin' directory exists
-$(shell mkdir -p $(obj_output_dir))
-
-.PHONY: all clean
+	$(MAKE) -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(CURDIR) V=$(V) clean
+	rm -f *.stamp
